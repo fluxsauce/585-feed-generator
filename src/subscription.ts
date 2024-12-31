@@ -5,24 +5,20 @@ import {
 import { FirehoseSubscriptionBase, getOpsByType } from './util/subscription'
 import lexer from './util/lexer'
 
-function isRochesterRelated(text: string) {
-  const clean = text.toLowerCase().trim()
-  if (!clean) return false
-
+function matchesLexer(text: string) {
   try {
-    lexer.input(clean)
+    lexer.input(text)
     const tokens = lexer.tokens()
     if (tokens.length > 1) {
-      console.log(tokens.toString())
+      console.log(new Date().toISOString(), tokens.toString())
       return true
     }
-    return false
   } catch (err) {
     if (err.message !== 'token not recognized') {
       console.error(err)
     }
-    return false
   }
+  return false
 }
 
 export class FirehoseSubscription extends FirehoseSubscriptionBase {
@@ -34,8 +30,7 @@ export class FirehoseSubscription extends FirehoseSubscriptionBase {
     const postsToDelete = ops.posts.deletes.map((del) => del.uri)
     const postsToCreate = ops.posts.creates
       .filter((create) => {
-        // only alf-related posts
-        return isRochesterRelated(create.record.text)
+        return matchesLexer(create.record.text)
       })
       .map((create) => {
         return {
