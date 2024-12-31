@@ -13,5 +13,6 @@
     "resolveJsonModule": true
   },
   "include": ["./src/**/*.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "types": ["node", "node:test", "express", "better-sqlite3", "tokenizr"]
 }
