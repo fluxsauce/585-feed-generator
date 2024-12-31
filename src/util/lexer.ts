@@ -18,11 +18,11 @@ lexer.rule(keywordsRegex, (ctx, match) => {
 
 // BlueSky accounts.
 lexer.rule(new RegExp(bskyBusinesses.join('|'), 'i'), (ctx, match) => {
-ctx.accept('bskyBusinesses')
+  ctx.accept('bskyBusinesses')
 })
 lexer.rule(new RegExp(bskyEdu.join('|'), 'i'), (ctx, match) => {
-    ctx.accept('bskyEdu')
-  })
+  ctx.accept('bskyEdu')
+})
 lexer.rule(new RegExp(bskyGovernment.join('|'), 'i'), (ctx, match) => {
   ctx.accept('bskyGovernment')
 })
