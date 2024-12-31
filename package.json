@@ -1,10 +1,10 @@
 {
-  "name": "feed-generator",
+  "name": "585-feed-generator",
   "version": "1.0.0",
-  "description": "atproto feed generator starter kit",
+  "description": "585 ATProto Feed Generator",
   "main": "index.js",
-  "repository": "git@github.com:bluesky-social/feed-generator.git",
-  "author": "dholms <dtholmgren@gmail.com>",
+  "repository": "git@github.com:fluxsauce/585-feed-generator.git",
+  "author": "Jon Peck <jpeck@fluxsauce.com>",
   "license": "MIT",
   "scripts": {
     "publishFeed": "ts-node scripts/publishFeedGen.ts",
