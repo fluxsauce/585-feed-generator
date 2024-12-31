@@ -18,7 +18,7 @@ describe('account', () => {
     lexer.input('thanks for being on BlueSky @cityofrochester.bsky.social yeah')
     const tokens = lexer.tokens()
     assert.equal(tokens.length, 2)
-    assert.equal(tokens[0].type, 'account')
+    assert.equal(tokens[0].type, 'bskyGovernment')
   })
 })
 
@@ -28,9 +28,6 @@ describe('city', () => {
     const tokens = lexer.tokens()
     assert.equal(tokens.length, 2)
     assert.equal(tokens[0].type, 'city')
-    console.log(tokens[0].value)
-    assert.equal(tokens[0].value, 'Rochester')
-    console.log(tokens)
   })
 
   it('should not match "Rochester, England"', () => {

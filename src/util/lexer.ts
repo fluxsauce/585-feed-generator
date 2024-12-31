@@ -1,49 +1,36 @@
 import cities from '../data/cities-towns.json'
 import citiesUnique from '../data/cities-towns-unique.json'
-
+import bskyGovernment from '../data/bsky-government.json'
+import bskyEdu from '../data/bsky-edu.json'
+import bskyBusinesses from '../data/bsky-businesses.json'
+import bskyMedia from '../data/bsky-media.json'
+import bksyOrgs from '../data/bsky-orgs.json'
+import keywords from '../data/keywords.json'
 import Tokenizr from 'tokenizr'
 
 const lexer = new Tokenizr()
 
 // Exact matches.
-const keywords = [
-  'rochacha',
-  'rochester institute of technology',
-  'eastman school',
-  'garbage plate',
-  'genny cream ale',
-  'rochesterny',
-  'museum of play',
-  'monroe county',
-  'durand beach',
-  'durand eastman',
-  'george eastman',
-  'mcclibraries',
-]
-
 const keywordsRegex = new RegExp(keywords.join('|'), 'i')
-
 lexer.rule(keywordsRegex, (ctx, match) => {
   ctx.accept('keyword')
 })
 
-// Government, businesses and institutions.
-const accounts = [
-  'cityofrochester.bsky.social',
-  'urochester.bsky.social',
-  'urmed.bsky.social',
-  'anomalyfilmfest.com',
-  'rocbbqsupply.bsky.social',
-  'thelittletheatre.bsky.social',
-  'rocvictoryalliance.bsky.social',
-  'roclgbtqtogether.bsky.social',
-  'downtownrocs.org',
-  'mcclibraries.bsky.social',
-  'wxxirochester.bsky.social',
-  'rittigers.bsky.social',
-]
-lexer.rule(new RegExp(accounts.join('|'), 'i'), (ctx, match) => {
-  ctx.accept('account')
+// BlueSky accounts.
+lexer.rule(new RegExp(bskyBusinesses.join('|'), 'i'), (ctx, match) => {
+ctx.accept('bskyBusinesses')
+})
+lexer.rule(new RegExp(bskyEdu.join('|'), 'i'), (ctx, match) => {
+    ctx.accept('bskyEdu')
+  })
+lexer.rule(new RegExp(bskyGovernment.join('|'), 'i'), (ctx, match) => {
+  ctx.accept('bskyGovernment')
+})
+lexer.rule(new RegExp(bskyMedia.join('|'), 'i'), (ctx, match) => {
+  ctx.accept('bskyMedia')
+})
+lexer.rule(new RegExp(bksyOrgs.join('|'), 'i'), (ctx, match) => {
+  ctx.accept('bskyOrgs')
 })
 
 // Check for city names
